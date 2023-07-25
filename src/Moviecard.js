@@ -10,15 +10,43 @@ class Moviecard extends React.Component{
             title: 'The Avengers',
             plot:'Supernatural Powers shown in the movie',
             price:199,
-            rating: 8.9
+            rating: 8.9,
+            stars:0
         } 
     }
+    
     addStars=()=>{
-        console.log("this: ",this);
+        // Method 1
+        // this.setState({
+        //     stars: this.state.stars + 0.5
+        // })
+
+        // Method 2 of setstate , giving previous state as argumnet 
+        this.setState((prevstate)=>{
+            if(this.state.stars>=5){
+                return;
+            }
+            return {
+                stars : prevstate.stars + 0.5
+            }
+        },()=>console.log("Stars inside callback:",this.state.stars));
+        
+        console.log("Stars outside callback: ",this.state.stars);
+    };
+
+    minusStars=() => {
+        this.setState((prevstate)=>{
+            if(prevstate.stars>0){
+            return {
+                
+                stars : prevstate.stars - 0.5
+            }
+        }
+        });  
     }
 
     render(){
-        const {title,plot,price,rating} = this.state;
+        const {title,plot,price,rating,stars} = this.state;
         return (
             <div className='main'>
                 <div className='movie-card'>
@@ -33,13 +61,14 @@ class Moviecard extends React.Component{
                         <div className='footer'>
                             <div className='rating'>{rating}</div>
                             <div className='star-dis'>
-                                <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/43/43625.png" alt="decrease"/>
+                                <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/43/43625.png"
+                                 alt="decrease" onClick={this.minusStars}/>
                                 <img alt ="star" 
                                 src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
                                 className='stars' onClick={this.addStars.bind(this)}/>
 
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/3524/3524388.png" alt="increase"/>
-                                <span>0</span>
+                                <span>{stars}</span>
                             </div>
                             <button className='favourite-btn'>Favourite</button>
                             <button className='cart-btn'>Add to cart</button>
