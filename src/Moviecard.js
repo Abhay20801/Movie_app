@@ -4,7 +4,17 @@ import React from 'react';
 // class Moviecard extends Component{}
 // import {Component} from 'react';
 class Moviecard extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            title: 'The Avengers',
+            plot:'Supernatural Powers shown in the movie',
+            price:199,
+            rating: 8.9
+        } 
+    }
     render(){
+        const {title,plot,price,rating} = this.state;
         return (
             <div className='main'>
                 <div className='movie-card'>
@@ -12,12 +22,12 @@ class Moviecard extends React.Component{
                         <img alt="Poster" src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"/>
                     </div>
                     <div className='right'>
-                        <div className='title'>The Avengers</div>
-                        <div className='plot'>Supernatural Powers shown in the movie</div>
-                        <div className='price'>Rs.199</div>
+                        <div className='title'>{title}</div>
+                        <div className='plot'>{plot}</div>
+                        <div className='price'>Rs. {price}</div>
 
                         <div className='footer'>
-                            <div className='rating'>8.9</div>
+                            <div className='rating'>{rating}</div>
                             <div className='star-dis'>
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/43/43625.png" alt="decrease"/>
                                 <img alt ="star" src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" className='stars'/>
