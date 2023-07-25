@@ -13,6 +13,10 @@ class Moviecard extends React.Component{
             rating: 8.9
         } 
     }
+    addStars=()=>{
+        console.log("this: ",this);
+    }
+
     render(){
         const {title,plot,price,rating} = this.state;
         return (
@@ -30,7 +34,10 @@ class Moviecard extends React.Component{
                             <div className='rating'>{rating}</div>
                             <div className='star-dis'>
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/43/43625.png" alt="decrease"/>
-                                <img alt ="star" src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" className='stars'/>
+                                <img alt ="star" 
+                                src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
+                                className='stars' onClick={this.addStars.bind(this)}/>
+
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/3524/3524388.png" alt="increase"/>
                                 <span>0</span>
                             </div>
