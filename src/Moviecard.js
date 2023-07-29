@@ -4,14 +4,18 @@ import React from 'react';
 // class Moviecard extends Component{}
 // import {Component} from 'react';
 class Moviecard extends React.Component{
+    
     constructor(){
+        
         super();
         this.state = {
             title: 'The Avengers',
             plot:'Supernatural Powers shown in the movie',
             price:199,
             rating: 8.9,
-            stars:0
+            stars:0,
+            fav:false,
+            cart:false
         } 
     }
     
@@ -45,8 +49,20 @@ class Moviecard extends React.Component{
         });  
     }
 
+    handleFav = () => {
+        this.setState({
+            fav:!this.state.fav
+        })
+    }
+
+    handleCart = () => {
+        this.setState({
+            cart:!this.state.cart
+        })
+    }
+
     render(){
-        const {title,plot,price,rating,stars} = this.state;
+        const {title,plot,price,rating,stars,fav,cart} = this.state;
         return (
             <div className='main'>
                 <div className='movie-card'>
@@ -70,8 +86,17 @@ class Moviecard extends React.Component{
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/3524/3524388.png" alt="increase"/>
                                 <span>{stars}</span>
                             </div>
-                            <button className='favourite-btn'>Favourite</button>
-                            <button className='cart-btn'>Add to cart</button>
+                            {/* {fav?<button className='unfavourite-btn' onClick={this.handleFav}>Un-Favourite</button>:
+                            <button className='favourite-btn' onClick={this.handleFav}>Favourite</button>} */}
+                            
+{/* In one line of abovr */}
+                            <button className=
+                            {fav?'unfavourite-btn':'favourite-btn'} 
+                            onClick={this.handleFav}> {fav?'Unfavourite':'Favourite'}</button>
+
+
+                            <button className='cart-btn' 
+                            onClick={this.handleCart}>{cart?'Remove':'Add to cart'}</button>
                         </div>
                     </div>
                 </div>
