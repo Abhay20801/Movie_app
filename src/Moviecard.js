@@ -4,70 +4,19 @@ import React from 'react';
 // class Moviecard extends Component{}
 // import {Component} from 'react';
 class Moviecard extends React.Component{
-    
-    constructor(){
-        
-        super();
-        this.state = {
-            title: 'The Avengers',
-            plot:'Supernatural Powers shown in the movie',
-            price:199,
-            rating: 8.9,
-            stars:0,
-            fav:false,
-            cart:false
-        } 
-    }
-    
-    addStars=()=>{
-        // Method 1
-        // this.setState({
-        //     stars: this.state.stars + 0.5
-        // })
-
-        // Method 2 of setstate , giving previous state as argumnet 
-        this.setState((prevstate)=>{
-            if(this.state.stars>=5){
-                return;
-            }
-            return {
-                stars : prevstate.stars + 0.5
-            }
-        },()=>console.log("Stars inside callback:",this.state.stars));
-        
-        console.log("Stars outside callback: ",this.state.stars);
-    };
-
-    minusStars=() => {
-        this.setState((prevstate)=>{
-            if(prevstate.stars>0){
-            return {
-                
-                stars : prevstate.stars - 0.5
-            }
-        }
-        });  
-    }
-
-    handleFav = () => {
-        this.setState({
-            fav:!this.state.fav
-        })
-    }
-
-    handleCart = () => {
-        this.setState({
-            cart:!this.state.cart
-        })
-    }
 
     render(){
-        const {title,plot,price,rating,stars,fav,cart} = this.state;
+        // Destructur movies and names it as data and can be accessed by this.props
+        const {movies:data} =this.props
+        console.log(data);
+
+        const {movies,addStars} = this.props;
+        const {title,plot,poster,price,rating,star,fav,cart} = this.props.movies;
         return (
             <div className='main'>
                 <div className='movie-card'>
                     <div className='left'>
-                        <img alt="Poster" src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"/>
+                        <img alt="Poster" src={poster}/>
                     </div>
                     <div className='right'>
                         <div className='title'>{title}</div>
@@ -81,10 +30,10 @@ class Moviecard extends React.Component{
                                  alt="decrease" onClick={this.minusStars}/>
                                 <img alt ="star" 
                                 src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
-                                className='stars' onClick={this.addStars.bind(this)}/>
+                                className='stars' onClick={()=>{addStars(movies)}}/>
 
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/3524/3524388.png" alt="increase"/>
-                                <span>{stars}</span>
+                                <span>{star}</span>
                             </div>
                             {/* {fav?<button className='unfavourite-btn' onClick={this.handleFav}>Un-Favourite</button>:
                             <button className='favourite-btn' onClick={this.handleFav}>Favourite</button>} */}
@@ -95,7 +44,7 @@ class Moviecard extends React.Component{
                             onClick={this.handleFav}> {fav?'Unfavourite':'Favourite'}</button>
 
 
-                            <button className='cart-btn' 
+                            <button className={cart?'unfavourite-btn':'cart-btn'} 
                             onClick={this.handleCart}>{cart?'Remove':'Add to cart'}</button>
                         </div>
                     </div>
