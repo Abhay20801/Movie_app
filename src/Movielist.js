@@ -120,7 +120,21 @@ class Movielist extends Component{
     }
 
     handFav = (movie) => {
-      
+      const {movies} = this.state;
+      const mid = movies.indexOf(movie);
+      movies[mid].fav = !movies[mid].fav;
+      this.setState({
+        movies
+      })
+    }
+
+    handleToggleCart = (movie) => {
+      const {movies} = this.state;
+      const mid = movies.indexOf(movie);
+      movies[mid].cart = !movies[mid].cart;
+      this.setState({
+        movies
+      })
     }
 
     render(){
@@ -128,9 +142,12 @@ class Movielist extends Component{
         return (
             <div className="main">
                 {movies.map((movie,index) => (
+                  // All functions are passed as props 
                 <Moviecard movies = {movie}
-                           key = {index} addStars={this.handIncStar} decStars={this.handDecStar}
-                           handFav={this.handFav}/>
+                           key = {index} addStars={this.handIncStar} 
+                           decStars={this.handDecStar}
+                           handFav={this.handFav}
+                           toggleCart={this.handleToggleCart}/>
 
             ))}              
             </div>
