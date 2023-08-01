@@ -10,7 +10,7 @@ class Moviecard extends React.Component{
         const {movies:data} =this.props
         console.log(data);
 
-        const {movies,addStars} = this.props;
+        const {movies,addStars,decStars,handleFav} = this.props;
         const {title,plot,poster,price,rating,star,fav,cart} = this.props.movies;
         return (
             <div className='main'>
@@ -27,7 +27,7 @@ class Moviecard extends React.Component{
                             <div className='rating'>{rating}</div>
                             <div className='star-dis'>
                                 <img className='str-btn' src="https://cdn-icons-png.flaticon.com/128/43/43625.png"
-                                 alt="decrease" onClick={this.minusStars}/>
+                                 alt="decrease" onClick={()=>{decStars(movies)}}/>
                                 <img alt ="star" 
                                 src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" 
                                 className='stars' onClick={()=>{addStars(movies)}}/>
@@ -41,7 +41,7 @@ class Moviecard extends React.Component{
 {/* In one line of abovr */}
                             <button className=
                             {fav?'unfavourite-btn':'favourite-btn'} 
-                            onClick={this.handleFav}> {fav?'Unfavourite':'Favourite'}</button>
+                            onClick={()=>{handleFav(movies)}}> {fav?'Unfavourite':'Favourite'}</button>
 
 
                             <button className={cart?'unfavourite-btn':'cart-btn'} 

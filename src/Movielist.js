@@ -103,13 +103,34 @@ class Movielist extends Component{
         movies
       })
     }
+
+    // Handle decreasing stars
+    handDecStar = (movie) => {
+      const {movies} = this.state;
+      const mid = movies.indexOf(movie);
+      if(movies[mid].star<=0){
+        return;
+      }
+      movies[mid].star -=0.5;
+      this.setState({
+        // movies:movies
+        // Above line can be shortly written as 
+        movies
+      })
+    }
+
+    handFav = (movie) => {
+      
+    }
+
     render(){
         const {movies} =  this.state;
         return (
             <div className="main">
                 {movies.map((movie,index) => (
                 <Moviecard movies = {movie}
-                           key = {index} addStars={this.handIncStar}/>
+                           key = {index} addStars={this.handIncStar} decStars={this.handDecStar}
+                           handFav={this.handFav}/>
 
             ))}              
             </div>
