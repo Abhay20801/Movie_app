@@ -18,21 +18,23 @@ const Title = styled.div`
         fontFamily:Montserrat,sans-serif;
 `
 const CartImg = styled.img`
-height: 48px,
-margin-right: 20px,
+height: 48px;
+margin-right: 20px;
 `
 const CartIconContainer = styled.div`
 position: relative;
 cursor: pointer;
 `
 const CartCount = styled.span`
-        background: orange;
+        background: ${(props)=>props.color};
         border-radius: 50%;
         padding: 4px 8px;
         position: absolute;
         right: 10px;
         top: -5px;
-        fontSize: 12px;
+        font-size: 12px;
+        
+        visibility:${(props)=> props.show?"visible":"hidden"};
 `
 class Navbar extends React.Component{
 
@@ -43,7 +45,7 @@ class Navbar extends React.Component{
                     <Title>Movie-App</Title>
                     <CartIconContainer>
                         <CartImg src="https://cdn-icons-png.flaticon.com/128/891/891462.png" alt="Cart Icon"/>
-                        <CartCount>0</CartCount>
+                        <CartCount color="yellow" show={true}>0</CartCount>
                     </CartIconContainer>
                 </Nav>
             </>
