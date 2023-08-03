@@ -3,15 +3,15 @@ import React from 'react';
 // If we directly wants to import component so no need to import react
 // class Moviecard extends Component{}
 // import {Component} from 'react';
-class Moviecard extends React.Component{
+function Moviecard(props){
 
-    render(){
+ 
         // Destructur movies and names it as data and can be accessed by this.props
-        const {movies:data} =this.props
+        const {movies:data} =props
         console.log(data);
 // Destructured everythings from this.props
-        const {movies,addStars,decStars,handFav,toggleCart} = this.props;
-        const {title,plot,poster,price,rating,star,fav,cart} = this.props.movies;
+        const {movies,addStars,decStars,handFav,toggleCart} = props;
+        const {title,plot,poster,price,rating,star,fav,cart} = props.movies;
         return (
             <div className='main'>
                 <div className='movie-card'>
@@ -52,6 +52,6 @@ class Moviecard extends React.Component{
             </div>
         )
     }
-}
+
 
 export default Moviecard;
