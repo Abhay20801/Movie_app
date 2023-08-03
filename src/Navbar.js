@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+
+// CSS Module
+import styles from './Navbar.module.css';
+
 // Styled component
 const Nav = styled.div`
     width: 100% ;
@@ -10,12 +14,13 @@ const Nav = styled.div`
      justify-content:space-between;`
 
 const Title = styled.div`
-        fontSize:30px;
+        font-size:50px;
         color: white;
-        fontWeight:600;
-        textTransform:uppercase;
-        marginLeft:20px;
-        fontFamily:Montserrat,sans-serif;
+        font-weight:600;
+        text-transform:uppercase;
+        margin-left:20px;
+        font-family:Montserrat,sans-serif;
+        &:hover{color:#0f0}
 `
 const CartImg = styled.img`
 height: 48px;
@@ -41,13 +46,13 @@ class Navbar extends React.Component{
     render(){
         return(
             <>
-                <Nav>
-                    <Title>Movie-App</Title>
+                <div className={styles.nav}>
+                    <div className={styles.title}>Movie-App</div>
                     <CartIconContainer>
-                        <CartImg src="https://cdn-icons-png.flaticon.com/128/891/891462.png" alt="Cart Icon"/>
+                        <img className={styles.cartImg} src="https://cdn-icons-png.flaticon.com/128/891/891462.png" alt="Cart Icon"/>
                         <CartCount color="yellow" show={true}>0</CartCount>
                     </CartIconContainer>
-                </Nav>
+                </div>
             </>
         )
     }
