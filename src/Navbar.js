@@ -44,14 +44,17 @@ const CartCount = styled.span`
 class Navbar extends React.Component{
 
     render(){
+        // this contains cartCount
+        console.log(this.props);
+        let { cartCount } = this.props;
         return(
             <>
                 <div className={styles.nav}>
                     <div className={styles.title}>Movie-App</div>
-                    <CartIconContainer>
+                    <div className={styles.cartIconContainer}>
                         <img className={styles.cartImg} src="https://cdn-icons-png.flaticon.com/128/891/891462.png" alt="Cart Icon"/>
-                        <CartCount color="yellow" show={true}>0</CartCount>
-                    </CartIconContainer>
+                        <span className={styles.cartCount} color="yellow" show={true}>{cartCount}</span>
+                    </div>
                 </div>
             </>
         )
